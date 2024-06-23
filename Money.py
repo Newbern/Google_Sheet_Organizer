@@ -1,7 +1,7 @@
 from Google_Format import Sheet
 
 # Setting up Spread sheet api and keys
-Sheet = Sheet(key="https://docs.google.com/spreadsheets/d/--THIS RIGHT HERE--/", api='your_file.json')
+Sheet = Sheet(key="https://docs.google.com/spreadsheets/d/--THIS RIGHT HERE--/...", api='your_file.json')
 
 
 # Money allowance for 2 weeks
@@ -108,7 +108,7 @@ def main(cell):
     abc, cell_row, cell_col = Sheet.locate(cell)
 
     # Running first function
-    yearly_format(cell, "Caleb")
+    yearly_format(cell, "Name-here")
 
     # Making sure this runs 13 spaces down from where the first function starts
     allowance(f"{abc[cell_row]}{cell_col + 13}")
