@@ -19,7 +19,7 @@ class Sheet:
         client = gspread.authorize(credentials)
 
         # Having the correct Google sheet url to edit in
-        spreadsheet = client.open_by_key(key)
+        spreadsheet = client.open_by_url(key)
 
         # This is the official Spread Sheet
         self.sheet = spreadsheet
@@ -50,6 +50,10 @@ class Sheet:
         # Blue
         elif rbg == "blue":
             rbg = (0, 0, 255)
+
+        # Ligth Blue
+        elif rbg == "light blue":
+            rbg = (173, 216, 230)
         # Black
         elif rbg == "black":
             rbg = (0, 0, 0)
@@ -265,6 +269,14 @@ class Sheet:
         # Merging cells
         self.worksheet.merge_cells(cell)
 
+    # Bolding
+    def bold(self, cell, bold=True):
+        self.worksheet.format(cell, {
+            "textFormat": {
+                "bold": bold
+            }
+        })
+
     # Boarders
     def borders(self, cell):
         # Borders are all Solid
@@ -277,13 +289,17 @@ class Sheet:
             }
         })
 
-    # Money format
-    def money(self, cell: str = False) -> None:
+    # Format for Money or other
+    def format(self, cell: str = False, format: str = "None") -> None:
         if not cell:
             cell = "1:1000"
+
+        else:
+            format = format.upper()
+
         self.worksheet.format(cell, {
             "numberFormat": {
-                "type": "CURRENCY"
+                "type": format
             }
         })
 
